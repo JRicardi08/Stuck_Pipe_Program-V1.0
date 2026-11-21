@@ -1,17 +1,61 @@
-# Stuck_Pipe_Program-V1.1
-During drilling operations, a pipe is considered stuck if it cannot be freed from the hole without damaging the pipe, and without exceeding the drilling rig’s maximum allowed hook load. 
+# Stuck Pipe Mechanism Identifier (V2.0)
 
-Pipe sticking can be classified under two categories: differential pressure pipe sticking and mechanical pipe sticking.
+During drilling operations, a pipe is considered stuck if it cannot be freed from the hole without damaging the pipe or exceeding the drilling rig’s maximum allowed hook load.
 
-Why is it so important to determine the mechanism of stuck pipe?
+Pipe sticking is generally classified under two main categories: **differential pressure pipe sticking** and **mechanical pipe sticking** (which includes *Pack-off / Bridge-off* and *Wellbore Geometry*).
 
-If you know the cause of stuck pipe, you will be able to free your pipe correctly. However, if you cannot correctly identify a root cause of stuck pipe, your drill string may be in the hol forever!!!
+## Why is it important to determine the stuck pipe mechanism?
 
-Many people in the oil field, including me, use the guidelines from the famous stuck pipe prevention book, named “TRUE,” which belongs to Amoco. It is extremely useful and so easy to understand.
+Identifying the root cause of a stuck pipe event is critical because each mechanism requires a completely different freeing action. Applying the wrong procedure can worsen the situation—and potentially leave your drill string stuck in the hole permanently.
 
-But what is the program about?
+Many field engineers, including myself, rely on the industry-standard guidelines from Amoco’s **TRUE** (*Training to Reduce Unscheduled Events*) stuck pipe prevention manual.
 
-Stuck_Pipe_Table-V1.0 Is a simple but useful program written with python that allow the user to interact and get a quick result. Throughout a quiz and your inputs, you will immediately get the answer that you want to know without any math operation. Just run it and python will make the rest.
+## What is this program about?
 
-Note : Code was arranged with functions and global variables, additionally, a validation list was added to make more clean the code. 
+**Stuck Pipe Mechanism Identifier** is an interactive command-line tool written in Python that digitizes the classic stuck pipe decision matrix. By answering four quick operational questions, the program calculates the score vectors and immediately identifies the most likely stuck pipe mechanism (including tie-breaking detection).
+
+## Installation & Usage
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/JRicardi08/Stuck_Pipe_Program-V1.0
+   cd Stuck_Pipe_Program-V1.0
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run the program:**
+   ```bash
+   python main.py
+   ```
+
+## Example Output
+
+```text
+Q-1: Pipe motion prior to sticking?
+  (a) Move Up
+  (b) Rotating Up
+  (c) Move Down
+  (d) Rotating Down
+  (e) Static
+Your answer: a
+
+=============================================
+FINAL SCORE BREAKDOWN
+=============================================
+  Pack-off / Bridge off    : 6 points
+  Differential Sticking    : 0 points
+  Wellbore Geometry        : 4 points
+---------------------------------------------
+Most likely mechanism(s): Pack-off / Bridge off
+=============================================
+```
+
+## Changelog
+
+* **V2.0 (Current):** Refactored into an Object-Oriented design (`StuckPipeQuiz` class) eliminating global variables, added per-question input validation, vectorized score calculation with NumPy, and implemented tie detection.
+* **V1.1:** Initial release using standalone functions, global variables, and a shared validation tuple.
 
